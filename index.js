@@ -5,7 +5,7 @@ for (var i = 0; i < numberOfDrums; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
 
         let buttonInnerHtml = this.innerHTML;
-
+        buttonAnimation(buttonInnerHtml);
         switch (buttonInnerHtml) {
             case "w":
                 var bass = new Audio('sounds/kick-bass.mp3');
@@ -47,7 +47,7 @@ for (var i = 0; i < numberOfDrums; i++) {
 document.addEventListener("keydown", function(e){
     
         let key = e.key;
-    
+       buttonAnimation(e.key);
     switch (key) {
         case "w":
             var bass = new Audio('sounds/kick-bass.mp3');
@@ -82,3 +82,13 @@ document.addEventListener("keydown", function(e){
     }
     
 });
+
+//Button animation
+
+function buttonAnimation(currentKey) {
+    let activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    },100)
+}
